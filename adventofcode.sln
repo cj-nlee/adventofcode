@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AOC2023D1", "AOC2023D1\AOC2023D1.fsproj", "{D3FBEB6C-4FF0-4DF6-AA46-80C73E16F8A9}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AOC2023D2", "AOC2023D2\AOC2023D2.fsproj", "{293A62DF-70F6-4FD1-B2C8-FE90E6ADC807}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{D3FBEB6C-4FF0-4DF6-AA46-80C73E16F8A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3FBEB6C-4FF0-4DF6-AA46-80C73E16F8A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3FBEB6C-4FF0-4DF6-AA46-80C73E16F8A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{293A62DF-70F6-4FD1-B2C8-FE90E6ADC807}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{293A62DF-70F6-4FD1-B2C8-FE90E6ADC807}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{293A62DF-70F6-4FD1-B2C8-FE90E6ADC807}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{293A62DF-70F6-4FD1-B2C8-FE90E6ADC807}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
