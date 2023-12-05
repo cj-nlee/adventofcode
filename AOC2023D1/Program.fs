@@ -10,6 +10,7 @@ module String =
         |> Seq.filter (fun (_, i) -> i >= 0)
         |> Seq.minBy snd
         |> fst
+
     let lastOf (strs: string seq) (s: string) =
         strs
         |> Seq.map (fun str -> (str, s.LastIndexOf(str)))
@@ -18,6 +19,7 @@ module String =
         |> fst
 
 let numbersOLD = "0123456789".ToCharArray()
+
 let getCalibrationValueOLD (s: string) =
     let first = s.IndexOfAny(numbersOLD)
     let last = s.LastIndexOfAny(numbersOLD)
@@ -28,18 +30,19 @@ let numbers =
     |> Seq.map (fun i -> ($"%d{i}", i))
     |> Map.ofSeq
     |> Map.combine (
-        Map [
-            ("zero", 0)
-            ("one", 1)
-            ("two", 2)
-            ("three", 3)
-            ("four", 4)
-            ("five", 5)
-            ("six", 6)
-            ("seven", 7)
-            ("eight", 8)
-            ("nine", 9)
-        ])
+        Map
+            [ ("zero", 0)
+              ("one", 1)
+              ("two", 2)
+              ("three", 3)
+              ("four", 4)
+              ("five", 5)
+              ("six", 6)
+              ("seven", 7)
+              ("eight", 8)
+              ("nine", 9) ]
+    )
+
 let getCalibrationValue (s: string) =
     let first = String.firstOf numbers.Keys s
     let last = String.lastOf numbers.Keys s

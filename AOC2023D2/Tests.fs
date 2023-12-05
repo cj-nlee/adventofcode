@@ -139,17 +139,24 @@ type TestFixture(output: ITestOutputHelper) =
             |> Seq.map Game.parse
             |> Seq.filter (Game.isPossible { Cubes = [ "red", 12; "green", 13; "blue", 14 ] })
             |> Seq.sumBy (_.ID)
+
         tehSum.Should().Be(2076)
 
     [<Fact>]
     let ``Gets the power of a very weak game`` () =
-        let game = { ID = 1; Shows = [ { Cubes = [ "red", 1; "green", 1; "blue", 1 ] } ] }
+        let game =
+            { ID = 1
+              Shows = [ { Cubes = [ "red", 1; "green", 1; "blue", 1 ] } ] }
+
         let power = Game.getPower game
         power.Should().Be(1)
 
     [<Fact>]
     let ``Gets the power of a fairly impressive game`` () =
-        let game = { ID = 1; Shows = [ { Cubes = [ "red", 200; "green", 9; "blue", 5 ] } ] }
+        let game =
+            { ID = 1
+              Shows = [ { Cubes = [ "red", 200; "green", 9; "blue", 5 ] } ] }
+
         let power = Game.getPower game
         power.Should().Be(9000)
 
@@ -160,4 +167,5 @@ type TestFixture(output: ITestOutputHelper) =
             |> Seq.map Game.parse
             |> Seq.map Game.getPower
             |> Seq.sum
+
         tehSum.Should().Be(70950)
