@@ -39,15 +39,15 @@ let getWinningNumberCount card =
     Seq.intersect card.HaveNums card.WinNums
     |> Seq.length
 
+let getCardScore card =
+    let count = getWinningNumberCount card
+    if count = 0 then
+        0
+    else
+        Convert.ToInt32(Math.Pow(2.0, count - 1 |> float))
+
 let getScore cards =
-    cards
-    |> Seq.sumBy (fun c ->
-        let count = getWinningNumberCount c
-        if count = 0 then
-            0
-        else
-            Convert.ToInt32(Math.Pow(2.0, count - 1 |> float))
-    )
+    cards |> Seq.sumBy getCardScore
 
 let getWaterfallScore cards =
     let cards' = cards |> Seq.map (fun x -> { Item = x; Count = 1 }) |> Seq.toArray
@@ -157,4 +157,24 @@ type TestFixture(output: ITestOutputHelper) =
         | Success(s, _, _) ->
             let score = getWaterfallScore s
             score.Should().Be(6284877)
+        | Failure _ -> failwith "Failed to parse"
+        
+    [<Fact>]
+    let ``No cards in the example have 0 score`` () =
+        let cards = File.ReadAllText("example") |> run pCards
+        match cards with
+        | Success(s, _, _) ->
+            let scores = s |> Seq.map getCardScore
+            let areAnyNonZero = scores |> Seq.forall ((<>) 0)
+            areAnyNonZero.Should().BeFalse()
+        | Failure _ -> failwith "Failed to parse"
+        
+    [<Fact>]
+    let ``No cards in the input have 0 score`` () =
+        let cards = File.ReadAllText("input") |> run pCards
+        match cards with
+        | Success(s, _, _) ->
+            let scores = s |> Seq.map getCardScore
+            let areAnyNonZero = scores |> Seq.forall ((<>) 0)
+            areAnyNonZero.Should().BeFalse()
         | Failure _ -> failwith "Failed to parse"
